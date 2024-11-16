@@ -591,3 +591,9 @@
 	--button-background:#0B5CFF;
   --button-border:1px solid #FFFFFF;
 }
+/* wangyiyun */
+.button-wangyiyun {
+	--button-text:#ffffff;
+	--button-background: #ff0000;
+	--button-border:1px solid #FFFFFF;
+}
