@@ -8,7 +8,7 @@
 /* Base Typography Settings
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 :root {
-	font-size:16px;
+	font-size:15px;
 }
 
 /* Grid
@@ -193,7 +193,7 @@ a:hover {
 	width:18.75rem;             	/* 300px */
  	min-height:3rem;                /* 48px */
   	padding:0.75rem 1rem;         	/* 12px ; 16px */
-  	font-size:1.125rem;           	/* 18px */
+  	font-size:1rem;           	/* 18px */
   	font-weight:700;
 	text-decoration:none;
 	white-space:normal;
