@@ -1,110 +1,154 @@
 <!DOCTYPE html>
-
-
-<html class="theme-auto" lang="en"> <!-- Update`class="theme-auto" with your preference -->
-
-  <head>
-    <meta charset="utf-8">
+<html class="theme-auto" lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-    <!-- Page Title - Change this to your name/brand (50-60 characters recommended) -->
-    <title>FarEastScala</title>
-    <link rel="icon" type="image/x-icon" href="/images/FES%20FES.png"> <!-- Update this with your own favicon -->
-    
-    <!-- Meta Description - Write a description (150-160 characters recommended) -->
+    <title>Far East Scala</title>
+    <link rel="icon" type="image/x-icon" href="./FarEastScala_files/FES FES.png">
     <meta name="description" content="illegal C-POP">
-    
-    <!-- Keywords -->
-    <meta name="keywords" content="your name, industry, and specialties">
-    
-    <!-- Canonical URL - Helps prevent duplicate content issues -->
-    <meta rel="canonical" href="https://yourwebsite.com">
-    
-    <!-- Author Information -->
     <meta name="author" content="DJ小男孩">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/brands.css">
-
-  </head>
-
-<body>
-
-    <div class="container">
-        <div class="column">
-
-            <!-- 
-              By default, the Avatar is rounded. Use the following:
-              - avatar--rounded: Automatically rounds the image
-              - avatar--soft: Slightly rounds the image
-              - avatar--none: Removes any rounding
-
-              Be sure to replace the src with your own image path and update the alt text
-            -->
-           <!-- <img class="avatar avatar--rounded" src="images/FES%20FES.png" srcset="images/FES FES.png" alt="FES">-->
-            <img class="avatar avatar--rounded" src="images/FES%20FES.png" alt="LittleLink">
-
-            <script>
-                // 检测颜色模式
-                function updateLogo() {
-                    const logo = document.getElementById('logo');
-                    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    logo.src = isDarkMode ? 'images/FES%20FESwhite.png' : 'images/FES%20FES.png';
-                }
-
-                // 初次加载时设置图标
-                updateLogo();
-
-                // 监听颜色模式变化
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
-            </script>
-
-
-            <!-- Replace with your name or brand -->
-            <h1 tabindex="0">
-              <div>FarEastScala</div>
-            </h1>
-
-            <!-- Add a short description about yourself or your brand -->
-            <p tabindex="0"></p>
-
-            <!-- All your buttons go here -->
-            <div class="button-stack" role="navigation">
-
-
-              <a class="button button-soundcloud" href="https://soundcloud.com/dongbeisluts" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/soundcloud.svg" alt="SoundCloud Logo">SoundCloud</a>
-                <!-----
-                              <a class="button button-wangyiyun" href="https://y.music.163.com/m/album?app_version=9.2.05&id=256242676&userid=499427252&dlt=0846" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/形状%20316%201%20拷贝.png" alt="SoundCloud Logo">节奏的奴隶III-DJ小女孩</a>
-
-
-                            <a class="button button-bandcamp" href="https://djgurl.bandcamp.com/album/iii" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/bandcamp.svg" alt="Bandcamp Logo">购买 节奏的奴隶III</a>
-
-
-
-                            <a class="button button-spotify-alt" href="https://open.spotify.com/album/43KwiM43PAo5pmKjDpsY2A?si=r92bTrHpQ6GGUbb13Rb9VA" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/spotify-alt.svg" alt="Spotify Logo">Listen 节奏的奴隶III on Spotify</a>
-                             ----->
-                <!-- Instagram -->
-                <a class="button button-instagram" href="https://www.instagram.com/fareastscala" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/instagram.svg" alt="Instagram Logo">Instagram</a>
-              <!-- Generic Cloud -->
-             <!-- <a class="button button-default" href="#" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/generic-cloud.svg" alt="Cloud Icon">Download File</a> -->
-                <!-- Discord -->
-                <a class="button button-discord" href="https://discord.gg/ev6xbtQ3XZ" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/discord.svg" alt="Discord Logo">Discord</a>
-
-              <!-- Generic Email -->
-              <a class="button button-default" href="https://skeletonffd@gmail.com" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/generic-email.svg" alt="Email Icon">Email Us</a>
-
-
-
-      </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #f1faee;
+            --accent-color: #a8dadc;
+            --dark-color: #1d3557;
+            --background-color: #121212;
+            --text-color: #f1faee;
+        }
         
-      <!-- Feel free to add your own footer information, including updating `privacy.html` to reflect how your LittleLink fork is set up -->
+        body {
+            background: #8d8d8d;
+            text-align: center;	
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+ 
 
-    
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .avatar {
+            width: 2000px;
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+			animation: blink 0.1s infinite;
+        }
+		
+		@keyframes blink {
+		  0%, 100% { opacity: 100; }
+		  50% { opacity: 0; }
+		}
+
+
+        .button-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: red;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+			filter: brightness(0) saturate(100%) invert(16%) sepia(99%) saturate(6054%) hue-rotate(358deg) brightness(100%) contrast(112%)  drop-shadow(0 0 2px #ff2600);
+			animation: blink 0.2s infinite;
+        }
+		@keyframes blink {
+		  0%, 100% { opacity: 100; }
+		  30% { opacity: 0; }
+		}
+
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+		
+        h1 {
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
+        }
+
+        .tagline {
+            font-style: italic;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .button {
+                min-width: 160px;
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <img class="avatar" src="./FarEastScala_files/Majestic Social.png" alt="Majestic Social Red">
+        
+        <div class="button-stack" role="navigation">
+            <a class="button button-soundcloud" href="https://soundcloud.com/dongbeisluts" target="_blank" rel="noopener" role="button">
+                <img class="icon" aria-hidden="true" src="./FarEastScala_files/soundcloud.svg" alt="SoundCloud Logo">
+            </a>
+            
+            <a class="button button-instagram" href="https://www.instagram.com/fareastscala" target="_blank" rel="noopener" role="button">
+                <img class="icon" aria-hidden="true" src="./FarEastScala_files/instagram.svg" alt="Instagram Logo">
+            </a>
+            
+            <a class="button button-discord" href="https://discord.gg/ev6xbtQ3XZ" target="_blank" rel="noopener" role="button">
+                <img class="icon" aria-hidden="true" src="./FarEastScala_files/discord.svg" alt="Discord Logo">
+            </a>
+            
+            <a class="button button-default" href="mailto:skeletonffd@gmail.com" target="_blank" rel="noopener" role="button">
+                <img class="icon" aria-hidden="true" src="./FarEastScala_files/generic-email.svg" alt="Email Icon">
+            </a>
+        </div>
+        
+        <footer>
+        </footer>
     </div>
-  </div>
-
 </body>
-
 </html>
