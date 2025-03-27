@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="theme-auto" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Far East Scala</title>
+    <link rel="icon" type="image/x-icon" href="../WeChat%20Files/wxid_hta43uqesrh891/FileStorage/File/2025-03/fes-head7-theme%202/fes-head7-theme/FarEastScala_files/FES%20FES.png">
+    <meta name="description" content="illegal C-POP">
+    <meta name="author" content="DJ小男孩">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --avatar-max-width: 90vw;
+            --icon-size: 8vw;
+            --button-gap: 4vw;
+            --section-margin: 5vh;
+        }
+
+        body {
+            background-image: url("../WeChat Files/wxid_hta43uqesrh891/FileStorage/File/2025-03/fes-head7-theme 2/fes-head7-theme/FarEastScala_files/Head 7 Cover Wide.png");
+            background-color: #8d8d8d;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: auto;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--section-margin);
+        }
+
+        /* 图片容器样式 */
+        .release-date-container {
+            position: relative;
+            width: 100%;
+            max-width: var(--avatar-max-width);
+            display: flex;
+            justify-content: center;
+        }
+
+        /* release-date图片样式 */
+        #releaseDateImage {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            animation: blink 0.01s infinite;
+        }
+
+        #releaseDateImage:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* 视频容器样式 - 初始隐藏 */
+        #videoContainer {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40vw;
+            max-width: 1200px;
+            height: auto;
+            max-height: 90vh;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        /* 视频样式 */
+        #videoPlayer {
+            width: 100%;
+            height: 100%;
+            max-height: calc(90vh - 40px);
+            object-fit: contain;
+        }
+
+        /* 关闭按钮 */
+        .close-btn {
+            position: top;
+            top: 100px;
+            right: 20px;
+            color: red;
+            font-size: 50px;
+            cursor: pointer;
+            z-index: 1001;
+            animation: blink 0.01s ease-in-out infinite;
+            text-shadow: 0 0 10px #ff2600;
+        }
+
+        .button-stack {
+            display: flex;
+            justify-content: center;
+            gap: var(--button-gap);
+            flex-wrap: wrap;
+            padding: 0;
+            margin: var(--section-margin) 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .button {
+            color: red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.1s ease;
+            width: var(--icon-size);
+            height: var(--icon-size);
+            min-width: 30px;
+            min-height: 30px;
+        }
+
+        .icon {
+            width: 100%;
+            height: 100%;
+            filter: brightness(0) saturate(100%) blur(0.5px) invert(16%) sepia(99%) saturate(6054%) hue-rotate(358deg) brightness(100%) contrast(112%) drop-shadow(0 0 2px #ff2600);
+            animation: blink 0.01s infinite;
+            object-fit: contain;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* 桌面端样式 */
+        @media (min-width: 768px) {
+            :root {
+                --avatar-max-width: 10000px;
+                --icon-size: 30px;
+                --button-gap: 140px;
+                --section-margin: 20px;
+            }
+            
+            .release-date-container {
+                max-width: 2000px;
+            }
+            
+            .button {
+                min-width: 12vw;
+                min-height: 1vw;
+            }
+        }
+
+        /* 小屏幕手机优化 */
+        @media (max-width: 767px) {
+            :root {
+                --button-gap: 30px;
+                --section-margin: 3vh;
+            }
+            
+            .button-stack {
+                gap: 12.5vw;
+                margin: 5vh 10vw;
+                justify-content: space-around;
+            }
+            
+            .button {
+                min-width: 1vw;
+                min-height: 1vw;
+            }
+            
+            .icon {
+                width: 10vw;
+                max-width: none;
+            }
+            
+            #videoContainer {
+                width: 95vw;
+                padding: 10px;
+            }
+            
+            #videoPlayer {
+                max-height: calc(90vh - 20px);
+            }
+            
+            .close-btn {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- release-date部分 -->
+        <div class="release-date-container">
+            <img id="releaseDateImage" src="../WeChat%20Files/wxid_hta43uqesrh891/FileStorage/File/2025-03/fes-head7-theme%202/fes-head7-theme/FarEastScala_files/release-date.png" alt="Release Date">
+        </div>
+        
+        <div class="button-stack" id="buttonStack" role="navigation">
+            <a class="button button-soundcloud" href="https://soundcloud.com/dongbeisluts" target="_blank" rel="noopener" role="button">
+                <img class="icon" aria-hidden="true" src="../WeChat%20Files/wxid_hta43uqesrh891/FileStorage/File/2025-03/fes-head7-theme%202/fes-head7-theme/FarEastScala_files/soundcloud.svg" alt="SoundCloud Logo">
+            </a>
+            
+            <a class="button button-instagram" href="https://www.instagram.com/fareastscala" target="_blank" rel="noopener" role="button">
+                <img class="icon" aria-hidden="true" src="../WeChat%20Files/wxid_hta43uqesrh891/FileStorage/File/2025-03/fes-head7-theme%202/fes-head7-theme/FarEastScala_files/instagram.svg" alt="Instagram Logo">
+            </a>
+            
+            <a class="button button-discord" href="https://discord.gg/ev6xbtQ3XZ" target="_blank" rel="noopener" role="button">
+                <img class="icon" aria-hidden="true" src="../WeChat%20Files/wxid_hta43uqesrh891/FileStorage/File/2025-03/fes-head7-theme%202/fes-head7-theme/FarEastScala_files/discord.svg" alt="Discord Logo">
+            </a>
+            
+            <a class="button button-default" href="mailto:skeletonffd@gmail.com" target="_blank" rel="noopener" role="button">
+                <img class="icon" aria-hidden="true" src="../WeChat%20Files/wxid_hta43uqesrh891/FileStorage/File/2025-03/fes-head7-theme%202/fes-head7-theme/FarEastScala_files/generic-email.svg" alt="Email Icon">
+            </a>
+        </div>
+        
+        <!-- 视频容器 -->
+        <div id="videoContainer">
+            <span class="close-btn">&times;</span>
+            <video id="videoPlayer" controls>
+                <source src="./FarEastScala_files/head-7-pre-teaser.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const releaseDateImage = document.getElementById('releaseDateImage');
+            const videoContainer = document.getElementById('videoContainer');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const buttonStack = document.getElementById('buttonStack');
+            const closeBtn = document.querySelector('.close-btn');
+            
+            // 点击图片显示视频
+            releaseDateImage.addEventListener('click', function() {
+                // 隐藏图片和按钮
+                this.style.display = 'none';
+                buttonStack.style.opacity = '0';
+                buttonStack.style.pointerEvents = 'none';
+                
+                // 显示视频容器
+                videoContainer.style.display = 'block';
+                
+                // 开始播放视频
+                videoPlayer.play();
+            });
+            
+            // 关闭视频并返回首页
+            function returnToIndex() {
+                window.location.href = "index.html";
+            }
+            
+            // 点击关闭按钮返回首页
+            closeBtn.addEventListener('click', returnToIndex);
+            
+            // 点击视频外部区域关闭
+            videoContainer.addEventListener('click', function(e) {
+                if(e.target === this) {
+                    returnToIndex();
+                }
+            });
+            
+            // 视频结束时自动返回首页
+            videoPlayer.addEventListener('ended', returnToIndex);
+        });
+    </script>
+</body>
+</html>
+</html>

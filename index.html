@@ -1,154 +1,282 @@
 <!DOCTYPE html>
 <html class="theme-auto" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Far East Scala</title>
-    <link rel="icon" type="image/x-icon" href="./FarEastScala_files/FES FES.png">
-    <meta name="description" content="illegal C-POP">
-    <meta name="author" content="DJ小男孩">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #e63946;
-            --secondary-color: #f1faee;
-            --accent-color: #a8dadc;
-            --dark-color: #1d3557;
-            --background-color: #121212;
-            --text-color: #f1faee;
-        }
-        
-        body {
-            background: #8d8d8d;
-            text-align: center;	
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-        }
- 
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .avatar {
-            width: 2000px;
-            max-width: 100%;
-            height: auto;
-            margin: 10px 0;
-			animation: blink 0.1s infinite;
-        }
-		
-		@keyframes blink {
-		  0%, 100% { opacity: 100; }
-		  50% { opacity: 0; }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Far East Scala</title>
+	<link rel="icon" type="image/x-icon" href="./FarEastScala_files/FES FES.png">
+	<meta name="description" content="illegal C-POP">
+	<meta name="author" content="DJ小男孩">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--avatar-max-width: 90vw;
+			--icon-size: 8vw;
+			--button-gap: 4vw;
+			--section-margin: 5vh;
 		}
 
-
-        .button-stack {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 25px 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            color: red;
-            min-width: 200px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .icon {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
-			filter: brightness(0) saturate(100%) invert(16%) sepia(99%) saturate(6054%) hue-rotate(358deg) brightness(100%) contrast(112%)  drop-shadow(0 0 2px #ff2600);
-			animation: blink 0.2s infinite;
-        }
-		@keyframes blink {
-		  0%, 100% { opacity: 100; }
-		  30% { opacity: 0; }
+		body {
+			background-image: url("./FarEastScala_files/Head 7 Cover Wide.png");
+			background-color: #8d8d8d;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			min-height: 100vh;
+			margin: 0;
+			padding: 20px;
+			overflow: auto;
+			box-sizing: border-box;
 		}
 
+		.container {
+			width: 100%;
+			max-width: 9000px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: var(--section-margin);
+		}
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-		
-        h1 {
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
-        }
+		.avatar {
+			width: auto;
+			height: auto;
+			max-width: var(--avatar-max-width);
+			animation: blink 0.01s infinite;
+		}
 
-        .tagline {
-            font-style: italic;
-            color: var(--accent-color);
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
+		@keyframes blink {
+			0%, 100% { opacity: 1; }
+			50% { opacity: 0; }
+		}
 
-        footer {
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.6);
-        }
+		.head7-slider-container {
+			width: 100%;
+			overflow: hidden;
+			white-space: nowrap;
+			margin: var(--section-margin) 0;
+		}
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            
-            .button {
-                min-width: 160px;
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-        }
-    </style>
+		.head7-slider {
+			display: inline-block;
+			animation: slide 10s linear infinite;
+			padding-left: 100%; /* 初始位置 */
+		}
+
+		@keyframes slide {
+			0% {
+				transform: translateX(0);
+			}
+			100% {
+				transform: translateX(-100%);
+			}
+		}
+
+		.head7-image {
+			display: inline-block;
+			height: 30vh;
+			max-height: 200px;
+			margin-right: 40px;
+			transition: transform 0.3s ease;
+			animation: blink 0.01s infinite;
+		}
+
+		.head7-image:hover {
+			transform: scale(1.05);
+			animation-play-state: paused;
+		}
+
+		/* 隐藏滚动条 - Chrome/Safari */
+		.head7-container::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* 头7图片样式 */
+		.head7-image {
+			width: auto;
+			height: 30vh;
+			min-width: 200px;
+			object-fit: contain;
+			transition: transform 0.3s ease;
+			flex-shrink: 0; /* 防止图片被压缩 */
+		}
+
+		.head7-image:hover {
+			transform: scale(1.05);
+		}
+
+		.button-stack {
+			display: flex;
+			justify-content: center;
+			gap: var(--button-gap);
+			flex-wrap: wrap;
+			padding: 0;
+			margin: var(--section-margin) 0;
+		}
+
+		.button {
+			color: red;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			transition: all 0.1s ease;
+			width: var(--icon-size);
+			height: var(--icon-size);
+			min-width: 30px;
+			min-height: 30px;
+		}
+
+		.icon {
+			width: 100%;
+			height: 100%;
+			filter: brightness(0) saturate(100%) blur(0.5px) invert(16%) sepia(99%) saturate(6054%) hue-rotate(358deg) brightness(100%) contrast(112%) drop-shadow(0 0 2px #ff2600);
+			animation: blink 0.01s infinite;
+			object-fit: contain;
+		}
+
+		footer {
+			margin-top: var(--section-margin);
+			font-size: clamp(0.8em, 3vw, 0.9em);
+			color: rgba(255, 255, 255, 0.6);
+		}
+
+		/* 桌面端样式 */
+		@media (min-width: 768px) {
+			:root {
+				--avatar-max-width: 5000px;
+				--icon-size: 30px;
+				--button-gap: 140px;
+				--section-margin: 20px;
+			}
+
+			.avatar {
+				width: 100%;
+				max-width: 2000px;
+				height: auto;
+				max-height: 1000px;
+				object-fit: contain;
+			}
+
+			.button {
+				min-width: 12vw;
+				min-height: 1vw;
+			}
+
+			.head7-container {
+				padding: 30px 0;
+			}
+
+			.head7-image {
+				height: 30vh;
+				min-width: 20px;
+			}
+
+
+		}
+
+		/* 小屏幕手机优化 */
+		@media (max-width: 767px) {
+			:root {
+				--button-gap: 30px;
+				--section-margin: 3vh;
+
+			}
+
+			.button-stack {
+				gap: 12.7vw;
+				margin: 5vh 10vw;
+				justify-content: space-around;
+			}
+
+			.button {
+				min-width: 1vw;
+				min-height: 1vw;
+			}
+
+			.icon {
+				width: 10vw;
+			}
+
+			.head7-image {
+				height: 10vh;
+			}
+		}
+	</style>
 </head>
+
 <body>
-    <div class="container">
-        
-        <img class="avatar" src="./FarEastScala_files/Majestic Social.png" alt="Majestic Social Red">
-        
-        <div class="button-stack" role="navigation">
-            <a class="button button-soundcloud" href="https://soundcloud.com/dongbeisluts" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="./FarEastScala_files/soundcloud.svg" alt="SoundCloud Logo">
-            </a>
-            
-            <a class="button button-instagram" href="https://www.instagram.com/fareastscala" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="./FarEastScala_files/instagram.svg" alt="Instagram Logo">
-            </a>
-            
-            <a class="button button-discord" href="https://discord.gg/ev6xbtQ3XZ" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="./FarEastScala_files/discord.svg" alt="Discord Logo">
-            </a>
-            
-            <a class="button button-default" href="mailto:skeletonffd@gmail.com" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="./FarEastScala_files/generic-email.svg" alt="Email Icon">
-            </a>
-        </div>
-        
-        <footer>
-        </footer>
-    </div>
+<div class="container">
+	<div class="head7-slider-container">
+		<div class="head7-slider">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+			<img class="head7-image" src="./FarEastScala_files/head7-blur-logo.png" alt="头7">
+
+			<!-- 可以添加更多相同或不同的图片 -->
+		</div>
+	</div>
+	<img class="avatar" src="./FarEastScala_files/Majestic Social.png" alt="Majestic Social Red">
+
+	<div class="button-stack" role="navigation">
+		<a class="button button-soundcloud" href="https://soundcloud.com/dongbeisluts" target="_blank" rel="noopener" role="button">
+			<img class="icon" aria-hidden="true" src="./FarEastScala_files/soundcloud.svg" alt="SoundCloud Logo">
+		</a >
+
+		<a class="button button-instagram" href="https://www.instagram.com/fareastscala" target="_blank" rel="noopener" role="button">
+			<img class="icon" aria-hidden="true" src="./FarEastScala_files/instagram.svg" alt="Instagram Logo">
+		</a >
+
+		<a class="button button-discord" href="https://discord.gg/ev6xbtQ3XZ" target="_blank" rel="noopener" role="button">
+			<img class="icon" aria-hidden="true" src="./FarEastScala_files/discord.svg" alt="Discord Logo">
+		</a >
+
+		<a class="button button-default" href="mailto:skeletonffd@gmail.com" target="_blank" rel="noopener" role="button">
+			<img class="icon" aria-hidden="true" src="./FarEastScala_files/generic-email.svg" alt="Email Icon">
+		</a >
+	</div>
+
+</div>
 </body>
 </html>
