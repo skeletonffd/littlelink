@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>分屏入口动画</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .section {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+        }
+        .top {
+            top: 0;
+            background: url('top-bg.gif') center center / cover no-repeat;
+        }
+        .bottom {
+            bottom: 0;
+            background: url('bottom-bg.gif') center center / cover no-repeat;
+        }
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            padding: 2rem;
+            text-align: center;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .sub-content {
+            display: none;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .back-button {
+            margin-top: 2rem;
+            padding: 0.6rem 1.2rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .back-button:hover {
+            background: #1d4ed8;
+        }
+        @media (max-width: 768px) {
+            .section {
+                font-size: 1.5rem;
+            }
+            .content {
+                padding: 1rem;
+            }
+            .back-button {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 分屏入口 -->
+    <div class="section top" id="topEntry">进入 A</div>
+    <div class="section bottom" id="bottomEntry">进入 B</div>
+
+    <!-- 内容区域 -->
+    <div class="content" id="contentArea">
+        <div id="aContent" class="sub-content">
+
+            <!-- ✅ 你可以把 A 页面的 HTML 写在这里 -->
+
+            <h1>A 页面内容</h1>
+            <p>这里是介绍 A 的文字模块，比如音效设计理念、个人简介等。</p>
+            <img src="a作品图.png" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+        <div id="bContent" class="sub-content">
+
+            <!-- ✅ 你可以把 B 页面的 HTML 写在这里 -->
+
+            <h1>B 页面内容</h1>
+            <p>这里可以放你制作的音效播放器、VST 插件展示、交互模块等。</p>
+            <video controls width="100%">
+                <source src="demo-b.mp4" type="video/mp4">
+                不支持的视频格式。
+            </video>
+        </div>
+        <button class="back-button" id="backButton">返回首页入口</button>
+    </div>
+</div>
+
+<script>
+    const topEntry = document.getElementById("topEntry");
+    const bottomEntry = document.getElementById("bottomEntry");
+    const content = document.getElementById("contentArea");
+    const aContent = document.getElementById("aContent");
+    const bContent = document.getElementById("bContent");
+    const backButton = document.getElementById("backButton");
+
+    let currentDirection = null;
+    let tl = null;
+
+    const openScreen = (direction) => {
+        currentDirection = direction;
+        tl = gsap.timeline();
+
+        if (direction === "top") {
+            tl.to(".bottom", { height: 0, duration: 1, ease: "power2.inOut" })
+                .to(".top", { height: "100%", duration: 1, ease: "power2.inOut" }, "<");
+            aContent.style.display = "block";
+            bContent.style.display = "none";
+        } else {
+            tl.to(".top", { height: 0, duration: 1, ease: "power2.inOut" })
+                .to(".bottom", { height: "100%", duration: 1, ease: "power2.inOut" }, "<");
+            bContent.style.display = "block";
+            aContent.style.display = "none";
+        }
+
+        tl.to(content, { opacity: 1, duration: 0.8, pointerEvents: "auto" }, "-=0.5");
+    };
+
+    const closeScreen = () => {
+        const tlBack = gsap.timeline();
+
+        tlBack.to(content, { opacity: 0, duration: 0.5, pointerEvents: "none" });
+
+        if (currentDirection === "top") {
+            tlBack.to(".top", { height: "50%", duration: 1, ease: "power2.inOut" })
+                .to(".bottom", { height: "50%", duration: 1, ease: "power2.inOut" }, "<");
+        } else {
+            tlBack.to(".bottom", { height: "50%", duration: 1, ease: "power2.inOut" })
+                .to(".top", { height: "50%", duration: 1, ease: "power2.inOut" }, "<");
+        }
+
+        aContent.style.display = "none";
+        bContent.style.display = "none";
+        currentDirection = null;
+    };
+
+    topEntry.addEventListener("click", () => openScreen("top"));
+    bottomEntry.addEventListener("click", () => openScreen("bottom"));
+    backButton.addEventListener("click", closeScreen);
+</script>
+</body>
+</html>
