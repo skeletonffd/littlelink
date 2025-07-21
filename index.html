@@ -9,6 +9,10 @@
     <meta name="author" content="DJ小男孩">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- Lenis -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.38/bundled/lenis.min.js"></script>
     <style>
         :root {
             --avatar-max-width: 90vw;
@@ -209,54 +213,32 @@
 			    height: 10vh;
 			}
         }
+
+        .main-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5vh;
+        }
+        .head7-slider-container {
+            margin-top: 5vh;
+        }
+        .avatar {
+            margin: 4vh 0;
+        }
+        .button-stack {
+            margin-bottom: 4vh;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-		<div class="head7-slider-container">
-		    <div class="head7-slider">
-		        <a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-		        <a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-		        <a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-		        <a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				<a href="head7.html"><img class="head7-image" src="FarEastScala_files/head7-blur-logo.png" alt="头7"></a>
-				
-		        <!-- 可以添加更多相同或不同的图片 -->
-		    </div>
-		</div>
+    <div class="main-section">
+     
+            </div>
+        </div>
         <img class="avatar" src="FarEastScala_files/Majestic%20Social.png" alt="Majestic Social Red">
         
         <div class="button-stack" role="navigation">
@@ -276,7 +258,45 @@
                 <img class="icon" aria-hidden="true" src="FarEastScala_files/generic-email.svg" alt="Email Icon">
             </a>
         </div>
-        
     </div>
+    <footer>
+        <p>© 2023 Far East Scala. All rights reserved.</p>
+    </footer>
+    <script>
+        // Lenis 平滑滚动
+        const lenis = new Lenis({
+            smooth: true,
+            lerp: 0.1,
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // GSAP 入场动画
+        window.addEventListener('DOMContentLoaded', () => {
+            gsap.from('.head7-slider', { y: -80, opacity: 0, duration: 1, ease: "power3.out" });
+            gsap.from('.avatar', { scale: 0.7, opacity: 0, duration: 1, delay: 0.5, ease: "power3.out" });
+            gsap.from('.button-stack .button', {
+                y: 60,
+                opacity: 0,
+                stagger: 0.15,
+                duration: 0.8,
+                delay: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // GSAP 悬停动画
+        document.querySelectorAll('.button').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, { scale: 1.15, duration: 0.2 });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { scale: 1, duration: 0.2 });
+            });
+        });
+    </script>
 </body>
 </html>
