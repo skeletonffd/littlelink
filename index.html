@@ -14,14 +14,17 @@
     <!-- Lenis -->
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.38/bundled/lenis.min.js"></script>
     <style>
-        :root {
-            --avatar-max-width: 90vw;
-            --icon-size: 8vw;
-            --button-gap: 4vw;
-            --section-margin: 5vh;
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
-
         body {
+            min-height: 100vh;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             background-image: url("FarEastScala_files/Head 7 Cover Wide.png");
             background-color: #8d8d8d;
             background-repeat: no-repeat;
@@ -32,13 +35,49 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
             overflow: auto;
-            box-sizing: border-box;
         }
-
+        .main-section {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .avatar {
+            z-index: 2;
+            max-width: 40vw;
+            max-height: 40vh;
+            width: auto;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .button-stack {
+            position: absolute;
+            bottom: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: row;
+            gap: 2vw;
+            align-items: center;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .head7-slider-container {
+            position: absolute;
+            top: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
         .container {
             width: 100%;
             max-width: 9000px;
@@ -48,32 +87,11 @@
             justify-content: center;
             gap: var(--section-margin);
         }
-
-        .avatar {
-            width: auto;
-            height: auto;
-            max-width: var(--avatar-max-width);
-            animation: blink 0.01s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .head7-slider-container {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            margin: var(--section-margin) 0;
-        }
-        
         .head7-slider {
             display: inline-block;
             animation: slide 10s linear infinite;
             padding-left: 100%; /* 初始位置 */
         }
-        
         @keyframes slide {
             0% {
                 transform: translateX(0);
@@ -82,27 +100,6 @@
                 transform: translateX(-100%);
             }
         }
-		
-		.head7-image {
-		    display: inline-block;
-		    height: 30vh;
-		    max-height: 200px;
-		    margin-right: 40px;
-		    transition: transform 0.3s ease;
-			animation: blink 0.01s infinite;
-		}
-		
-		.head7-image:hover {
-		    transform: scale(1.05);
-		    animation-play-state: paused;
-		}
-
-        /* 隐藏滚动条 - Chrome/Safari */
-        .head7-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* 头7图片样式 */
         .head7-image {
             width: auto;
             height: 30vh;
@@ -111,47 +108,40 @@
             transition: transform 0.3s ease;
             flex-shrink: 0; /* 防止图片被压缩 */
         }
-
         .head7-image:hover {
             transform: scale(1.05);
         }
-
-        .button-stack {
-            display: flex;
-            justify-content: center;
-            gap: var(--button-gap);
-            flex-wrap: wrap;
-            padding: 0;
-            margin: var(--section-margin) 0;
-        }
-
         .button {
-            color: red;
+            background: none;
+            border-radius: 0;
+            width: auto;
+            height: auto;
+            min-width: unset;
+            min-height: unset;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            transition: all 0.1s ease;
-            width: var(--icon-size);
-            height: var(--icon-size);
-            min-width: 30px;
-            min-height: 30px;
+            transition: transform 0.2s;
+            box-shadow: none;
+            border: none;
+            outline: none;
+            padding: 0;
         }
-
+        .button:hover {
+            background: none;
+            box-shadow: none;
+            transform: scale(1.12);
+        }
         .icon {
-            width: 100%;
-            height: 100%;
-            filter: brightness(0) saturate(100%) blur(0.5px) invert(16%) sepia(99%) saturate(6054%) hue-rotate(358deg) brightness(100%) contrast(112%) drop-shadow(0 0 2px #ff2600);
-            animation: blink 0.01s infinite;
-            object-fit: contain;
+            width: 24px;
+            height: 24px;
+            filter: none;
         }
-
         footer {
             margin-top: var(--section-margin);
             font-size: clamp(0.8em, 3vw, 0.9em);
             color: rgba(255, 255, 255, 0.6);
         }
-
         /* 桌面端样式 */
         @media (min-width: 768px) {
             :root {
@@ -160,7 +150,6 @@
                 --button-gap: 140px;
                 --section-margin: 20px;
             }
-            
             .avatar {
                width: 100%;
                max-width: 2000px;
@@ -168,79 +157,66 @@
                max-height: 1000px;
                object-fit: contain;
             }
-			
-			.button {
-			    min-width: 12vw;
-			    min-height: 1vw;
-			}
-            
+            .button {
+                min-width: 12vw;
+                min-height: 1vw;
+            }
             .head7-container {
                 padding: 30px 0;
             }
-            
             .head7-image {
                 height: 30vh;
                 min-width: 20px;
             }
-			
-			
         }
-
         /* 小屏幕手机优化 */
         @media (max-width: 767px) {
             :root {
                 --button-gap: 30px;
                 --section-margin: 3vh;
-
             }
-            
             .button-stack {
                 gap: 12.7vw;
                 margin: 5vh 10vw;
                 justify-content: space-around;
             }
-            
             .button {
                 min-width: 1vw;
                 min-height: 1vw;
             }
-            
             .icon {
                 width: 10vw;
             }
-			
-			.head7-image {
-			    height: 10vh;
-			}
+            .head7-image {
+                height: 10vh;
+            }
         }
-
-        .main-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 5vh;
-        }
-        .head7-slider-container {
-            margin-top: 5vh;
-        }
-        .avatar {
-            margin: 4vh 0;
-        }
-        .button-stack {
-            margin-bottom: 4vh;
+        @media (max-width: 600px) {
+            .button-stack {
+                gap: 6vw;
+                padding: 0;
+                border-radius: 0;
+            }
+            .button {
+                width: auto;
+                height: auto;
+            }
+            .icon {
+                width: 20px;
+                height: 20px;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="main-section">
-     
+        <div class="head7-slider-container">
+            <div class="head7-slider">
+                <!-- ... head7 images ... -->
             </div>
         </div>
         <img class="avatar" src="FarEastScala_files/Majestic%20Social.png" alt="Majestic Social Red">
-        
         <div class="button-stack" role="navigation">
             <a class="button button-soundcloud" href="https://soundcloud.com/dongbeisluts" target="_blank" rel="noopener" role="button">
                 <img class="icon" aria-hidden="true" src="FarEastScala_files/soundcloud.svg" alt="SoundCloud Logo">
@@ -260,7 +236,7 @@
         </div>
     </div>
     <footer>
-        <p>© 2023 Far East Scala. All rights reserved.</p>
+        <p>© 2025 Far East Scala. All rights reserved.</p>
     </footer>
     <script>
         // Lenis 平滑滚动
@@ -274,21 +250,30 @@
         }
         requestAnimationFrame(raf);
 
-        // GSAP 入场动画
+        // 入场动画
         window.addEventListener('DOMContentLoaded', () => {
-            gsap.from('.head7-slider', { y: -80, opacity: 0, duration: 1, ease: "power3.out" });
-            gsap.from('.avatar', { scale: 0.7, opacity: 0, duration: 1, delay: 0.5, ease: "power3.out" });
+            gsap.from('.head7-slider', { y: 40, opacity: 0, duration: 1, ease: "power2.out" });
+            gsap.from('.avatar', { y: 40, opacity: 0, duration: 1, delay: 0.2, ease: "power2.out" });
             gsap.from('.button-stack .button', {
-                y: 60,
+                y: 40,
                 opacity: 0,
-                stagger: 0.15,
-                duration: 0.8,
-                delay: 1,
-                ease: "power3.out"
+                stagger: 0.12,
+                duration: 0.7,
+                delay: 0.4,
+                ease: "power2.out"
             });
         });
 
-        // GSAP 悬停动画
+        // 滚动时社交logo微缩放
+        lenis.on('scroll', ({ scroll, limit, velocity, direction }) => {
+            // 让按钮随滚动有微缩放，简约动感
+            const scale = 1 + Math.min(Math.abs(velocity) * 0.04, 0.08);
+            document.querySelectorAll('.button').forEach(btn => {
+                btn.style.transform = `scale(${scale})`;
+            });
+        });
+
+        // 悬停动画（可选，已极简）
         document.querySelectorAll('.button').forEach(btn => {
             btn.addEventListener('mouseenter', () => {
                 gsap.to(btn, { scale: 1.15, duration: 0.2 });
