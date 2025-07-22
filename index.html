@@ -216,6 +216,39 @@
                 min-width: 40px;
             }
         }
+        body.terror-bg {
+            animation: terrorBgFlash 2.5s infinite alternate;
+        }
+        @keyframes terrorBgFlash {
+            0% { filter: brightness(0.9) contrast(1.1) hue-rotate(0deg); }
+            40% { filter: brightness(0.7) contrast(1.3) hue-rotate(-10deg) saturate(1.5); }
+            60% { filter: brightness(1.1) contrast(1.2) hue-rotate(10deg) saturate(2); }
+            100% { filter: brightness(0.8) contrast(1.4) hue-rotate(-5deg) saturate(2.5); }
+        }
+        .avatar.terror {
+            filter: blur(2px) grayscale(0.7) contrast(1.5) drop-shadow(0 0 30px #ff0000cc);
+            animation: avatarJitter 0.18s infinite alternate;
+        }
+        @keyframes avatarJitter {
+            0% { transform: translateY(0) rotate(-1deg) scale(1.01);}
+            100% { transform: translateY(2px) rotate(1deg) scale(0.99);}
+        }
+        .button.terror {
+            filter: drop-shadow(0 0 8px #ff0000cc) contrast(1.5) grayscale(0.3);
+            animation: buttonGhost 0.4s infinite alternate;
+        }
+        @keyframes buttonGhost {
+            0% { filter: drop-shadow(0 0 8px #ff0000cc) contrast(1.5) grayscale(0.3);}
+            100% { filter: drop-shadow(0 0 16px #ff0000cc) contrast(2) grayscale(0.5);}
+        }
+        .head7-slider.terror {
+            filter: blur(1.5px) brightness(0.8) contrast(1.3);
+            animation: sliderFloat 2.5s infinite alternate;
+        }
+        @keyframes sliderFloat {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(10px) scale(1.03);}
+        }
     </style>
 </head>
 
@@ -249,6 +282,9 @@
         <p>© 2025 Far East Scala. All rights reserved.</p>
     </footer>
     <script>
+        // 恐怖背景
+        document.body.classList.add('terror-bg');
+
         // Lenis 平滑滚动
         const lenis = new Lenis({
             smooth: true,
@@ -260,38 +296,57 @@
         }
         requestAnimationFrame(raf);
 
-        // 入场动画
+        // 恐怖入场动画
         window.addEventListener('DOMContentLoaded', () => {
-            gsap.from('.head7-slider', { y: 40, opacity: 0, duration: 1, ease: "power2.out" });
-            gsap.from('.avatar', { y: 40, opacity: 0, duration: 1, delay: 0.2, ease: "power2.out" });
-            gsap.from('.button-stack .button', {
-                y: 40,
-                opacity: 0,
-                stagger: 0.12,
-                duration: 0.7,
-                delay: 0.4,
-                ease: "power2.out"
+            // 头像恐怖入场
+            const avatar = document.querySelector('.avatar');
+            avatar.classList.add('terror');
+            gsap.fromTo(avatar, 
+                { y: 80, opacity: 0, rotate: -10, filter: "blur(8px) grayscale(1)" },
+                { y: 0, opacity: 1, rotate: 0, filter: "blur(2px) grayscale(0.7)", duration: 1.2, ease: "power4.out" }
+            );
+            // slider恐怖入场
+            const slider = document.querySelector('.head7-slider');
+            slider.classList.add('terror');
+            gsap.fromTo(slider, 
+                { y: -60, opacity: 0, filter: "blur(8px)" },
+                { y: 0, opacity: 1, filter: "blur(1.5px)", duration: 1.2, delay: 0.2, ease: "power4.out" }
+            );
+            // 按钮恐怖入场
+            document.querySelectorAll('.button').forEach((btn, i) => {
+                btn.classList.add('terror');
+                gsap.fromTo(btn, 
+                    { y: 40, opacity: 0, scale: 0.7, filter: "blur(4px)" },
+                    { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, delay: 0.5 + i*0.1, ease: "back.out(2)" }
+                );
             });
         });
 
-        // 滚动时社交logo微缩放
-        lenis.on('scroll', ({ scroll, limit, velocity, direction }) => {
-            // 让按钮随滚动有微缩放，简约动感
-            const scale = 1 + Math.min(Math.abs(velocity) * 0.04, 0.08);
+        // 滚动时社交logo微缩放+鬼影
+        lenis.on('scroll', ({ velocity }) => {
+            const scale = 1 + Math.min(Math.abs(velocity) * 0.08, 0.18);
             document.querySelectorAll('.button').forEach(btn => {
                 btn.style.transform = `scale(${scale})`;
+                btn.style.filter = `drop-shadow(0 0 ${8+Math.abs(velocity)*12}px #ff0000cc) contrast(1.5) grayscale(0.3)`;
+            });
+            // 页面整体轻微抖动
+            document.body.style.transform = `translate(${Math.sin(Date.now()/80)*2}px, ${Math.cos(Date.now()/60)*2}px)`;
+        });
+
+        // 悬停动画：快速放大缩小
+        document.querySelectorAll('.button').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, { scale: 1.25, duration: 0.12, yoyo: true, repeat: 1, ease: "power1.inOut" });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { scale: 1, duration: 0.18, ease: "power1.inOut" });
             });
         });
 
-        // 悬停动画（可选，已极简）
-        document.querySelectorAll('.button').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                gsap.to(btn, { scale: 1.15, duration: 0.2 });
-            });
-            btn.addEventListener('mouseleave', () => {
-                gsap.to(btn, { scale: 1, duration: 0.2 });
-            });
-        });
+        // 头像偶尔自动晃动
+        setInterval(() => {
+            gsap.to('.avatar', { x: gsap.utils.random(-8,8), y: gsap.utils.random(-8,8), rotate: gsap.utils.random(-3,3), duration: 0.18, yoyo: true, repeat: 1, ease: "power1.inOut" });
+        }, 1800);
     </script>
 </body>
 </html>
