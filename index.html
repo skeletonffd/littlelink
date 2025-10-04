@@ -6,37 +6,53 @@
     <title>Far East Scala</title>
     <link rel="icon" type="image/x-icon" href="FarEastScala_files/FES%20FES.png">
     <meta name="description" content="illegal C-POP">
-    <meta name="author" content="DJ小男孩">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <meta name="author" content="DJ小男孩 DJ小女孩">
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <!-- Lenis -->
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.38/bundled/lenis.min.js"></script>
     <style>
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
+        
         body {
             min-height: 100vh;
-            height: 100vh;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-image: url("FarEastScala_files/Head 7 Cover Wide.png");
-            background-color: #8d8d8d;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+            background-color: #9d2d2a;
+            background-image: url("FarEastScala_files/jzdzrrr.jpg");
+            background-repeat: repeat;
+            background-size: auto;
+            background-position: center center;
+            background-attachment: fixed;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             overflow: auto;
+            position: relative;
         }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            z-index: 1;
+            pointer-events: none;
+            animation: flicker 0.4s infinite;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { background: rgba(0, 0, 0, 0.3); }
+            50% { background: rgba(255, 255, 255, 0.1); }
+        }
+        
         .main-section {
             height: 100vh;
             width: 100vw;
@@ -46,17 +62,53 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-        }
-        .avatar {
             z-index: 2;
-            width: 40vw;
-            max-width: 320px;
-            min-width: 120px;
-            height: auto;
-            max-height: 40vh;
-            display: block;
-            margin: 0 auto;
         }
+        
+        /* 头像容器 - 简化版本 */
+        .avatar-container {
+            position: relative;
+            width: 80vw;
+            max-width: 420px;
+            height: 40vh;
+            max-height: 400px;
+        }
+
+        /* 基础头像样式 */
+        .avatar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+
+
+        }
+
+        /* 第一张图片 - 显示3秒 */
+        .avatar-1 {
+            animation: showHide1 0.3s infinite;
+            filter: blur(0px) grayscale(0.4) contrast(1.5) drop-shadow(0 0 30px #fffb00ff);
+        }
+
+        /* 第二张图片 - 显示3秒 */
+        .avatar-2 {
+            animation: showHide2 0.3s infinite;
+            filter: blur(0px) grayscale(0.4) contrast(1.5) drop-shadow(0 0 30px #942192ff);
+        }
+
+        /* 简单的显示/隐藏动画 */
+        @keyframes showHide1 {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes showHide2 {
+            0%, 50% { opacity: 0; }
+            51%, 100% { opacity: 1; }
+        }
+        
         .button-stack {
             position: absolute;
             bottom: 5vh;
@@ -69,49 +121,8 @@
             align-items: center;
             background: none;
             padding: 0;
-            border-radius: 0;
-            box-shadow: none;
         }
-        .head7-slider-container {
-            position: absolute;
-            top: 5vh;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-        }
-        .container {
-            width: 100%;
-            max-width: 9000px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: var(--section-margin);
-        }
-        .head7-slider {
-            display: inline-block;
-            animation: slide 10s linear infinite;
-            padding-left: 100%; /* 初始位置 */
-        }
-        @keyframes slide {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-        .head7-image {
-            width: auto;
-            height: clamp(8vh, 18vw, 120px);
-            min-width: 60px;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-            flex-shrink: 0; /* 防止图片被压缩 */
-        }
-        .head7-image:hover {
-            transform: scale(1.05);
-        }
+        
         .button {
             background: none;
             border-radius: 0;
@@ -123,217 +134,172 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.2s;
-            box-shadow: none;
+            box-shadow: red;
             border: none;
             outline: none;
             padding: 0;
+			animation: buttonFlicker 0.s infinite;
         }
+		
+		@keyframes buttonFlicker {
+		    0%, 100% { 
+		        opacity: 1;
+		        filter: drop-shadow(0 0 8px #ff0000cc);
+		    }
+		    25% { 
+		        opacity: 0.8;
+		        filter: drop-shadow(0 0 12px #ff0000cc);
+		    }
+		    50% { 
+		        opacity: 0.6;
+		        filter: drop-shadow(0 0 15px #ff0000cc);
+		    }
+		    75% { 
+		        opacity: 0.9;
+		        filter: drop-shadow(0 0 10px #ff0000cc);
+		    }
+		}
+        
         .button:hover {
-            background: none;
-            box-shadow: none;
             transform: scale(1.12);
+                /* 悬停时停止闪烁，保持高亮 */
+                animation: none;
+                filter: drop-shadow(0 0 20px #ff0000) brightness(4);
         }
-        .icon {
-            width: clamp(20px, 6vw, 32px);
-            height: clamp(20px, 6vw, 32px);
-            filter: none;
-        }
+        
+		
+		
+		.icon {
+			width: clamp(20px, 6vw, 32px);
+			height: clamp(20px, 6vw, 32px);
+			/* 稳定的红色 */
+			filter: invert(100) sepia(0) saturate(0) hue-rotate(0deg);
+			transition: all 0.1s ease;
+		}
+
+		/* SoundCloud - 橙色阴影 */
+		.button:nth-child(1) .icon {
+			filter: invert(100) sepia(0) saturate(0) hue-rotate(0deg) drop-shadow(0 0 12px #ff5500);
+		}
+
+		/* Instagram - 粉色阴影 */
+		.button:nth-child(2) .icon {
+			filter: invert(100) sepia(0) saturate(0) hue-rotate(0deg) drop-shadow(0 0 12px #e1306c);
+		}
+
+		/* Discord - 蓝色阴影 */
+		.button:nth-child(3) .icon {
+			filter: invert(100) sepia(0) saturate(0) hue-rotate(0deg) drop-shadow(0 0 12px #fffb00);
+		}
+
+		/* Email - 绿色阴影 */
+		.button:nth-child(4) .icon {
+			filter: invert(100) sepia(0) saturate(0) hue-rotate(0deg) drop-shadow(0 0 12px #0433ff);
+		}
+
+		/* 悬停时增强阴影效果 */
+		.button:hover:nth-child(1) .icon {
+			filter: invert(100) sepia(0) saturate(0) hue-rotate(0deg) drop-shadow(0 0 20px #ff5500);
+			transform: scale(1.1);
+		}
+
+		.button:hover:nth-child(2) .icon {
+			filter: invert(100) sepia(0) saturate(0) hue-rotate(0deg) drop-shadow(0 0 20px #e1306c);
+			transform: scale(1.1);
+		}
+
+		.button:hover:nth-child(3) .icon {
+			filter: invert(100) sepia(0) saturate(0) hue-rotate(0deg) drop-shadow(0 0 20px #5865f2);
+			transform: scale(1.1);
+		}
+
+		.button:hover:nth-child(4) .icon {
+			filter: invert(100) sepia(0) saturate(0) hue-rotate(0deg) drop-shadow(0 0 20px #00ff00);
+			transform: scale(1.1);
+		}
+        
         footer {
-            margin-top: var(--section-margin);
+            position: absolute;
+            bottom: 2vh;
             font-size: clamp(0.8em, 3vw, 0.9em);
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(0, 0, 0, 1.0);
+            z-index: 2;
         }
-        /* 桌面端样式 */
-        @media (min-width: 768px) {
-            :root {
-                --avatar-max-width: 5000px;
-                --icon-size: 30px;
-                --button-gap: 140px;
-                --section-margin: 20px;
-            }
-            .avatar {
-               width: 100%;
-               max-width: 2000px;
-               height: auto;
-               max-height: 1000px;
-               object-fit: contain;
-            }
-            .button {
-                min-width: 12vw;
-                min-height: 1vw;
-            }
-            .head7-container {
-                padding: 30px 0;
-            }
-            .head7-image {
-                height: 30vh;
-                min-width: 20px;
-            }
-        }
-        /* 小屏幕手机优化 */
-        @media (max-width: 767px) {
-            :root {
-                --button-gap: 30px;
-                --section-margin: 3vh;
-            }
-            .button-stack {
-                gap: 12.7vw;
-                margin: 5vh 10vw;
-                justify-content: space-around;
-            }
-            .button {
-                min-width: 1vw;
-                min-height: 1vw;
-            }
-            .icon {
-                width: 10vw;
-            }
-            .head7-image {
-                height: 10vh;
-            }
-        }
+
         @media (max-width: 600px) {
-            .main-section {
-                height: 100dvh;
-                min-height: 100dvh;
-            }
-            .avatar {
-                width: 60vw;
-                max-width: 80vw;
-                min-width: 80px;
-                max-height: 30vh;
-            }
             .button-stack {
-                gap: 8vw;
-                bottom: 3vh;
+                gap: 6vw;
             }
-            .icon {
-                width: clamp(18px, 10vw, 28px);
-                height: clamp(18px, 10vw, 28px);
-            }
-            .head7-image {
-                height: clamp(6vh, 16vw, 60px);
-                min-width: 40px;
+            .avatar-container {
+                width: 90vw;
+                height: 30vh;
             }
         }
-        body.terror-bg {
-            animation: terrorBgFlash 2.5s infinite alternate;
-        }
-        @keyframes terrorBgFlash {
-            0% { filter: brightness(0.9) contrast(1.1) hue-rotate(0deg); }
-            40% { filter: brightness(0.7) contrast(1.3) hue-rotate(-10deg) saturate(1.5); }
-            60% { filter: brightness(1.1) contrast(1.2) hue-rotate(10deg) saturate(2); }
-            100% { filter: brightness(0.8) contrast(1.4) hue-rotate(-5deg) saturate(2.5); }
-        }
-        .avatar.terror {
-            filter: blur(2px) grayscale(0.7) contrast(1.5) drop-shadow(0 0 30px #ff0000cc);
-            animation: avatarJitter 0.18s infinite alternate;
-        }
-        @keyframes avatarJitter {
-            0% { transform: translateY(0) rotate(-1deg) scale(1.01);}
-            100% { transform: translateY(2px) rotate(1deg) scale(0.99);}
-        }
-        .button.terror {
-            filter: drop-shadow(0 0 8px #ff0000cc) contrast(1.5) grayscale(0.3);
-            animation: buttonGhost 0.4s infinite alternate;
-        }
-        @keyframes buttonGhost {
-            0% { filter: drop-shadow(0 0 8px #ff0000cc) contrast(1.5) grayscale(0.3);}
-            100% { filter: drop-shadow(0 0 16px #ff0000cc) contrast(2) grayscale(0.5);}
-        }
-        .head7-slider.terror {
-            filter: blur(1.5px) brightness(0.8) contrast(1.3);
-            animation: sliderFloat 2.5s infinite alternate;
-        }
-        @keyframes sliderFloat {
-            0% { transform: translateY(0) scale(1);}
-            100% { transform: translateY(10px) scale(1.03);}
-        }
+		
+		 @media (max-aspect-ratio: 16/9) {
+		            body {
+		                background-size: auto 100%;
+		            }
+		        }
+		        
+		        @media (min-aspect-ratio: 16/9) {
+		            body {
+		                background-size: 100% auto;
+		            }
+		        }
+		        
+		        @media (max-width: 767px) {
+		            .button-stack {
+		                gap: 8vw;
+		                width: 90%;
+		                justify-content: space-around;
+		            }
+		            .button {
+		                flex: 1;
+		                max-width: 60px;
+		            }
+		        }
+				
+				
     </style>
 </head>
 
+<audio id="bgMusic" autoplay loop>
+    <source src="FarEastScala_files/motherrr.mp3" type="audio/mpeg">
+</audio>
+
 <body>
     <div class="main-section">
-        <div class="head7-slider-container">
-            <div class="head7-slider">
-                <!-- ... head7 images ... -->
-            </div>
+        <div class="avatar-container">
+            <img class="avatar avatar-1" src="FarEastScala_files/Majestic%20Social.png" alt="Majestic Social">
+            <img class="avatar avatar-2" src="FarEastScala_files/节奏的主人%20LOGO.png" alt="节奏的主人">
         </div>
-        <img class="avatar" src="FarEastScala_files/Majestic%20Social.png" alt="Majestic Social Red">
-        <div class="button-stack" role="navigation">
-            <a class="button button-soundcloud" href="https://soundcloud.com/dongbeisluts" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="FarEastScala_files/soundcloud.svg" alt="SoundCloud Logo">
+        <div class="button-stack">
+            <a class="button button-soundcloud" href="https://soundcloud.com/dongbeisluts" target="_blank">
+                <img class="icon" src="FarEastScala_files/soundcloud.svg" alt="SoundCloud">
             </a>
-            
-            <a class="button button-instagram" href="https://www.instagram.com/fareastscala" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="FarEastScala_files/instagram.svg" alt="Instagram Logo">
+            <a class="button button-instagram" href="https://www.instagram.com/fareastscala" target="_blank">
+                <img class="icon" src="FarEastScala_files/instagram.svg" alt="Instagram">
             </a>
-            
-            <a class="button button-discord" href="https://discord.gg/ev6xbtQ3XZ" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="FarEastScala_files/discord.svg" alt="Discord Logo">
+            <a class="button button-discord" href="https://discord.gg/ev6xbtQ3XZ" target="_blank">
+                <img class="icon" src="FarEastScala_files/discord.svg" alt="Discord">
             </a>
-            
-            <a class="button button-default" href="mailto:skeletonffd@gmail.com" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="FarEastScala_files/generic-email.svg" alt="Email Icon">
+            <a class="button button-default" href="mailto:skeletonffd@gmail.com" target="_blank">
+                <img class="icon" src="FarEastScala_files/generic-email.svg" alt="Email">
             </a>
         </div>
     </div>
-    <footer>
-        <p>© 2025 Far East Scala. All rights reserved.</p>
-    </footer>
+
+    
     <script>
-        // 恐怖背景
-        document.body.classList.add('terror-bg');
-
-        // Lenis 平滑滚动
-        const lenis = new Lenis({
-            smooth: true,
-            lerp: 0.1,
+        console.log('页面加载完成');
+        
+        const avatars = document.querySelectorAll('.avatar');
+        avatars.forEach((avatar, index) => {
+            avatar.onload = () => console.log(`图片 ${index + 1} 加载成功`);
+            avatar.onerror = () => console.log(`图片 ${index + 1} 加载失败`);
         });
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // 恐怖入场动画
-        window.addEventListener('DOMContentLoaded', () => {
-            // 头像恐怖入场
-            const avatar = document.querySelector('.avatar');
-            avatar.classList.add('terror');
-            gsap.fromTo(avatar, 
-                { y: 80, opacity: 0, rotate: -10, filter: "blur(8px) grayscale(1)" },
-                { y: 0, opacity: 1, rotate: 0, filter: "blur(2px) grayscale(0.7)", duration: 1.2, ease: "power4.out" }
-            );
-            // slider恐怖入场
-            const slider = document.querySelector('.head7-slider');
-            slider.classList.add('terror');
-            gsap.fromTo(slider, 
-                { y: -60, opacity: 0, filter: "blur(8px)" },
-                { y: 0, opacity: 1, filter: "blur(1.5px)", duration: 1.2, delay: 0.2, ease: "power4.out" }
-            );
-            // 按钮恐怖入场
-            document.querySelectorAll('.button').forEach((btn, i) => {
-                btn.classList.add('terror');
-                gsap.fromTo(btn, 
-                    { y: 40, opacity: 0, scale: 0.7, filter: "blur(4px)" },
-                    { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, delay: 0.5 + i*0.1, ease: "back.out(2)" }
-                );
-            });
-        });
-
-        // 滚动时社交logo微缩放+鬼影
-        lenis.on('scroll', ({ velocity }) => {
-            const scale = 1 + Math.min(Math.abs(velocity) * 0.08, 0.18);
-            document.querySelectorAll('.button').forEach(btn => {
-                btn.style.transform = `scale(${scale})`;
-                btn.style.filter = `drop-shadow(0 0 ${8+Math.abs(velocity)*12}px #ff0000cc) contrast(1.5) grayscale(0.3)`;
-            });
-            // 页面整体轻微抖动
-            document.body.style.transform = `translate(${Math.sin(Date.now()/80)*2}px, ${Math.cos(Date.now()/60)*2}px)`;
-        });
-
-        // 悬停动画：快速放大缩小
+		
         document.querySelectorAll('.button').forEach(btn => {
             btn.addEventListener('mouseenter', () => {
                 gsap.to(btn, { scale: 1.25, duration: 0.12, yoyo: true, repeat: 1, ease: "power1.inOut" });
@@ -342,11 +308,23 @@
                 gsap.to(btn, { scale: 1, duration: 0.18, ease: "power1.inOut" });
             });
         });
+		
+		 document.addEventListener('DOMContentLoaded', function() {
+		        const bgMusic = document.getElementById('bgMusic');
+		        
+		        // 尝试自动播放
+		        bgMusic.play().catch(function(error) {
+		            console.log('自动播放被阻止，需要用户交互');
+		            // 添加点击页面任意位置开始播放
+		            document.body.addEventListener('click', function() {
+		                bgMusic.play();
+		            }, { once: true });
+		        });
+		        
+		        // 设置音量（0.0 到 1.0）
+		        bgMusic.volume = 0.5;
+		    });
 
-        // 头像偶尔自动晃动
-        setInterval(() => {
-            gsap.to('.avatar', { x: gsap.utils.random(-8,8), y: gsap.utils.random(-8,8), rotate: gsap.utils.random(-3,3), duration: 0.18, yoyo: true, repeat: 1, ease: "power1.inOut" });
-        }, 1800);
     </script>
 </body>
 </html>
